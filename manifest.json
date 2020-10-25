@@ -1,0 +1,33 @@
+{
+  "name": "BookSearch",
+  "description": "Searches prices of book websites.",
+  "version": "1.0",
+  "manifest_version": 2,
+  "permissions": ["contextMenus", "storage", "<all_urls>", "tabs", "activeTab"],
+  "browser_action": {
+    "default_popup": "popup/popup.html",
+    "default_title": "BookSearch"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://*.google.com/*", "http://*/*", "https://*/*"],
+      "js": ["./dist/main.js"],
+      "css": ["./src/content.css"],
+      "run_at": "document_start"
+    }
+  ],
+  "web_accessible_resources": ["./scripts/searchBook.js"],
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  },
+  "commands": {
+    "_execute_browser_action": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+F",
+        "mac": "MacCtrl+Shift+F"
+      },
+      "description": "TODO"
+    }
+  }
+}
